@@ -1,0 +1,11 @@
+{
+  "extends": "./jsconfig.json", // Extend the root jsconfig.json
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../src/*"] // Adjust the path for the app's directory structure
+    }
+  },
+  "include": ["src", "../shared"], // Include app-specific and shared code
+  "exclude": ["node_modules", "dist"]
+}
