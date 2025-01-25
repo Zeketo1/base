@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { TbLogout } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 import Logo from "@/assets/Logo.svg";
 import { sideBarMenu } from "@/utils/contants";
@@ -49,15 +50,21 @@ const Sidebar = ({ active, setActive }) => {
           <div className="flex flex-col items-center gap-3 w-full">
             {sideBarMenu.map(({ Icon, path, name }, i) => (
               <div
+                // to={path}
                 key={i}
                 className={`flex pl-[18px] gap-5 items-center py-[7px] ${
                   location.pathname === path &&
                   "bg-gradient-to-r from-[#615bff5b] via-white to-white"
+                } ${
+                  i === 1 && location.pathname === "/customer"
+                    ? "bg-gradient-to-r from-[#615bff5b] via-white to-white"
+                    : null
                 } w-full overflow-hidden`}
                 onClick={() => setActive(!active)}
               >
                 <Icon
                   className={`flex-shrink-0 text-[20px] ${
+                    (i === 1 && location.pathname === "/customer") ||
                     location.pathname === path
                       ? "text-primary1"
                       : "text-slate-700"
@@ -79,8 +86,8 @@ const Sidebar = ({ active, setActive }) => {
 
 // Add prop validation
 Sidebar.propTypes = {
-  active: PropTypes.bool.isRequired,      // Must be a boolean
-  setActive: PropTypes.func.isRequired,  // Must be a function
+  active: PropTypes.bool.isRequired, // Must be a boolean
+  setActive: PropTypes.func.isRequired, // Must be a function
 };
 
 export default Sidebar;

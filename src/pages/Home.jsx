@@ -1,11 +1,12 @@
 import { LineChartDot } from "@/components/LineChartDot";
-import { homeCategory } from "../utils/contants";
+import { homeCategory, topSelling } from "../utils/contants";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { PieChartDonut } from "@/components/PieChartDonut";
+import DashboardTable from "@/components/DashboardTable";
 
 const Home = () => {
   return (
-    <div className={`flex flex-col gap-7 py-4 pr-7 w-full`}>
+    <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
       <div className="flex justify-between py-1 mb-5">
         <div className="font-semibold text-[15px]">Dashboard</div>
         <div className="flex gap-2">
@@ -40,12 +41,39 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <div className="relative gap-7 grid grid-cols-[60%_37%] h-[300px]">
-        <div className="bg-white pb-16 shadow-md rounded-lg">
+      <div className="relative gap-7 grid grid-cols-[60%_37%] h-fit">
+        <div className="bg-white pb-[70px] shadow-md rounded-lg">
           <LineChartDot />
         </div>
         <div>
           <PieChartDonut />
+        </div>
+      </div>
+      <div className="gap-7 grid grid-cols-[60%_37%]">
+        <div className="relative bg-white shadow-md rounded-lg">
+          <p className="flex ml-5 justify-between text-left mt-4 text-sm font-semibold">Recent Orders</p>
+          <DashboardTable />
+        </div>
+        <div className="px-5 pt-5 pb-1 h-full bg-white shadow-md rounded-lg w-full">
+          <h3 className="mt-1 mb-2 text-sm font-semibold">
+            Top Selling Products
+          </h3>
+          <div>
+            {topSelling.map(({ image, name, price, ratings }, i) => (
+              <div className={`flex gap-5 items-center ${i === 0 && "border-b"} py-4`} key={i}>
+                <img
+                  className="h-[110px] w-[110px] rounded-lg object-cover "
+                  src={image}
+                  alt={name}
+                />
+                <div className="flex flex-col gap-2 justify-center h-full">
+                  <p className="text-[14px]">{name}</p>
+                  <img className="w-[80px]" src={ratings} alt="ratings" />
+                  <p className="text-[13px] font-semibold">${price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
