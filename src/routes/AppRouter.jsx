@@ -4,6 +4,9 @@ import SideBar from "../common/SideBar";
 import { useState } from "react";
 import Analytics from "@/pages/Analytics";
 import Customer from "@/pages/Customer";
+import Login from "@/auth/Login";
+import Signup from "@/auth/Signup";
+import PageTransition from "@/utils/PageTransition";
 
 const Layout = () => {
   const [active, setActive] = useState(false);
@@ -21,7 +24,7 @@ export const AppRouter = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { path: "dashboard", element: <Home /> },
+      { path: "", element: <Home /> },
       {
         path: "/analytics",
         element: <Analytics />,
@@ -31,5 +34,21 @@ export const AppRouter = createBrowserRouter([
         element: <Customer />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: (
+      <PageTransition>
+        <Login />
+      </PageTransition>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <PageTransition>
+        <Signup />
+      </PageTransition>
+    ),
   },
 ]);

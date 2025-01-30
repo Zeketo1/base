@@ -22,6 +22,7 @@ import airdot from "../assets/analytics/airdot.svg";
 import shoe2 from "../assets/analytics/shoe.svg";
 import kids from "../assets/analytics/kids.svg";
 import watch from "../assets/analytics/watch.svg";
+import badge from "../assets/analytics/badge.svg";
 import top from "../assets/analytics/top.svg";
 import john from "../assets/customer/john.svg";
 import jane from "../assets/customer/jane.svg";
@@ -36,9 +37,8 @@ import min from "../assets/customer/min.jpg";
 import josh from "../assets/customer/josh.svg";
 import kelvin from "../assets/customer/kelvin.svg";
 
-
 const sideBarMenu = [
-  { Icon: BiSolidCategory, name: "Dashboard", path: "/dashboard" },
+  { Icon: BiSolidCategory, name: "Dashboard", path: "/" },
   { Icon: HiChartSquareBar, name: "Analytics", path: "/analytics" },
   { Icon: RiCoupon2Fill, name: "Invoice", path: "/invoice" },
   { Icon: MdScheduleSend, name: "Shedule", path: "/schedule" },
@@ -156,6 +156,7 @@ const analyticsTableData = [
     price: 57,
     totalOrder: 325,
     totalSales: "18,525",
+    badge,
   },
   {
     sn: "2",
@@ -164,6 +165,7 @@ const analyticsTableData = [
     price: 20,
     totalOrder: 237,
     totalSales: "4,740",
+    badge,
   },
   {
     sn: "3",
@@ -172,6 +174,7 @@ const analyticsTableData = [
     price: 178,
     totalOrder: 325,
     totalSales: "57,850",
+    badge,
   },
   {
     sn: "4",
@@ -211,6 +214,7 @@ const customerData = [
     age: 28,
     address: "123 Maple St, Springfield, IL",
     occupation: "Software Engineer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Jane Smith",
@@ -221,6 +225,7 @@ const customerData = [
     age: 32,
     address: "456 Oak St, Los Angeles, CA",
     occupation: "Graphic Designer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Alice Johnson",
@@ -231,6 +236,7 @@ const customerData = [
     age: 25,
     address: "789 Pine St, Miami, FL",
     occupation: "Content Writer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Bob Brown",
@@ -241,6 +247,7 @@ const customerData = [
     age: 45,
     address: "101 Elm St, Austin, TX",
     occupation: "Marketing Manager",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Charlie Davis",
@@ -251,6 +258,7 @@ const customerData = [
     age: 38,
     address: "202 Cedar St, Denver, CO",
     occupation: "Project Manager",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Mark Evans",
@@ -261,6 +269,7 @@ const customerData = [
     age: 29,
     address: "303 Birch St, Seattle, WA",
     occupation: "UX Designer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Franklin Moore",
@@ -271,6 +280,7 @@ const customerData = [
     age: 50,
     address: "404 Walnut St, Boston, MA",
     occupation: "Business Analyst",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Grace Wilson",
@@ -281,6 +291,7 @@ const customerData = [
     age: 26,
     address: "505 Aspen St, Portland, OR",
     occupation: "Data Scientist",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Henry King",
@@ -291,16 +302,18 @@ const customerData = [
     age: 30,
     address: "606 Fir St, Chicago, IL",
     occupation: "HR Specialist",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Min Lee",
     email: "minlee@example.com",
     image: min,
     phone: "+1-555-012-3456",
-    gender: "Male",
+    gender: "Female",
     age: 34,
     address: "707 Spruce St, San Francisco, CA",
     occupation: "Web Developer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Josh Martinez",
@@ -311,6 +324,7 @@ const customerData = [
     age: 27,
     address: "808 Cypress St, Houston, TX",
     occupation: "Digital Marketer",
+    percent: generateRandomPercentages(),
   },
   {
     name: "Kevin White",
@@ -321,8 +335,25 @@ const customerData = [
     age: 42,
     address: "909 Redwood St, Phoenix, AZ",
     occupation: "Accountant",
+    percent: generateRandomPercentages(),
   },
 ];
+
+function generateRandomPercentages() {
+  const random1 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
+  const random2 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
+  return [random1, random2];
+}
+
+const getRandomDesktopValue = () => Math.floor(Math.random() * 500) + 50;
+const months = ["January", "February", "March", "April", "May", "June"];
+const updatedCustomerData = customerData.map((customer) => ({
+  ...customer,
+  chartData: months.map((month) => ({
+    month,
+    desktop: getRandomDesktopValue(),
+  })),
+}));
 
 export {
   sideBarMenu,
@@ -334,5 +365,5 @@ export {
   analyticsTableHeader,
   analyticsTableData,
   custermerTableHeader,
-  customerData,
+  updatedCustomerData,
 };

@@ -1,7 +1,4 @@
-import {
-  analyticsTableData,
-  analyticsTableHeader,
-} from "@/utils/contants";
+import { analyticsTableData, analyticsTableHeader } from "@/utils/contants";
 import {
   Table,
   TableBody,
@@ -25,9 +22,11 @@ const AnalyticsTable = () => {
       </TableHeader>
       <TableBody>
         {analyticsTableData.map(
-          ({ sn, image, name, price, totalOrder, totalSales }, i) => (
+          ({ sn, image, name, price, totalOrder, totalSales, badge }, i) => (
             <TableRow className="text-[13px]" key={i}>
-              <TableCell>{sn}</TableCell>
+              <TableCell>
+                {badge ? <img src={badge} alt={badge} /> : sn}
+              </TableCell>
               <TableCell className="text-blue-500 flex items-center gap-3 text-[12px]">
                 <img src={image} alt={name} className="h-[25px] object-cover" />
                 {name}

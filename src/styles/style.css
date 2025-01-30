@@ -4,6 +4,14 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.sheet__scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .lineChart {
   @apply bg-gradient-to-r from-[#5BC4FF] to-[#FF5BEF];
 }

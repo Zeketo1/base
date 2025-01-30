@@ -49,8 +49,8 @@ const Sidebar = ({ active, setActive }) => {
           </div>
           <div className="flex flex-col items-center gap-3 w-full">
             {sideBarMenu.map(({ Icon, path, name }, i) => (
-              <div
-                // to={path}
+              <Link
+                to={path}
                 key={i}
                 className={`flex pl-[18px] gap-5 items-center py-[7px] ${
                   location.pathname === path &&
@@ -71,7 +71,7 @@ const Sidebar = ({ active, setActive }) => {
                   }`}
                 />
                 <div>{name}</div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

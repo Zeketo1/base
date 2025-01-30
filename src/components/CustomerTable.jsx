@@ -1,4 +1,5 @@
-import { custermerTableHeader, customerData } from "@/utils/contants";
+import { custermerTableHeader, updatedCustomerData } from "@/utils/contants";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import {
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import TablePopover from "./TablePopover";
 
 const CustomerTable = () => {
   return (
@@ -16,20 +18,46 @@ const CustomerTable = () => {
       <TableHeader>
         <TableRow className="text-[12px]">
           {custermerTableHeader.map((header, i) => (
-            <TableHead key={i} className={`${i === custermerTableHeader.length - 1 && "opacity-0"}`}>{header}</TableHead>
+            <TableHead
+              key={i}
+              className={`${
+                i === custermerTableHeader.length - 1 && "opacity-0"
+              }`}
+            >
+              {header}
+            </TableHead>
           ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {customerData.map(({ name, image, email, phone, gender }, i) => (
+        {updatedCustomerData.map((data, i) => (
           <TableRow className="text-[13px]" key={i}>
             <TableCell className="flex items-center gap-3 text-[12px]">
-              <img src={image} alt={name} className="h-[30px] w-[30px] object-cover rounded-full" />
-              {name}
+              <img
+                src={data.image}
+                alt={data.name}
+                className="h-[30px] w-[30px] object-cover rounded-full"
+              />
+              {data.name}
             </TableCell>
-            <TableCell>{email}</TableCell>
-            <TableCell>{phone}</TableCell>
-            <TableCell>{gender}</TableCell>
+            <TableCell>{data.email}</TableCell>
+            <TableCell>{data.phone}</TableCell>
+            <TableCell>
+              <div
+                className={`text-center rounded-full p-1 w-[70%] ${
+                  data.gender == "Female"
+                    ? " text-pink-500 bg-[#be188c2c]"
+                    : "text-[#0c5dfd] bg-[#5b92ff50]"
+                }`}
+              >
+                {data.gender}
+              </div>
+            </TableCell>
+            <TableCell>
+              <TablePopover customerData={data}>
+                <HiOutlineDotsHorizontal />
+              </TablePopover>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
