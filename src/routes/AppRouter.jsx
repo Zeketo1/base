@@ -7,6 +7,7 @@ import Customer from "@/pages/Customer";
 import Login from "@/auth/Login";
 import Signup from "@/auth/Signup";
 import PageTransition from "@/utils/PageTransition";
+import Invoice from "@/pages/Invoice";
 
 const Layout = () => {
   const [active, setActive] = useState(false);
@@ -32,6 +33,10 @@ export const AppRouter = createBrowserRouter([
       {
         path: "/customer",
         element: <Customer />,
+      },
+      {
+        path: "/invoice",
+        element: <Invoice />,
       },
     ],
   },

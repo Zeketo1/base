@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
-
 import Logo from "@/assets/Logo.svg";
 import { sideBarMenu } from "@/utils/contants";
 
@@ -14,7 +13,7 @@ const Sidebar = ({ active, setActive }) => {
     <div
       className={`${
         active
-          ? "w-[270px] bg-white shadow-md px-0"
+          ? "w-[250px] bg-white shadow-md px-0"
           : "w-[74px] bg-transparent pl-4"
       } sticky top-0 left-0 transition-all duration-500 h-screen py-4 mr-7`}
     >

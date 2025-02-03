@@ -6,8 +6,15 @@ import AnalyticsTable from "@/components/AnalyticsTable";
 import BarChartComponent from "@/components/BarChart";
 import { RadialChartStacked } from "@/components/RadialChart";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const Analytics = () => {
+  const { setActive } = useOutletContext();
+  useEffect(() => {
+    setActive(false);
+  }, []);
+  
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
       <div className="flex justify-between py-1">
@@ -26,7 +33,9 @@ const Analytics = () => {
           <div className="py-2 px-5 text-[13px] bg-primary1 rounded-lg text-white">
             Product
           </div>
-          <Link to="/customer" className="py-2 px-4 text-[13px]">Customer</Link>
+          <Link to="/customer" className="py-2 px-4 text-[13px]">
+            Customer
+          </Link>
         </div>
         <div className="flex items-center text-white gap-2 bg-primary1 py-2 px-4 rounded-md shadow-lg">
           <LuPlus />
@@ -56,7 +65,8 @@ const Analytics = () => {
                   <div className="flex justify-between px-5 pt-4">
                     <div className="flex gap-4">
                       <div
-                        className={`flex items-center justify-center bg-[#${glow}] h-[40px] w-[40px] p-2 rounded-full`}
+                        style={{ backgroundColor: `#${glow}` }}
+                        className={`flex items-center justify-center h-[40px] w-[40px] p-2 rounded-full`}
                       >
                         <img className=" object-cover" src={icon} alt={name} />
                       </div>

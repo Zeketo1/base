@@ -355,6 +355,88 @@ const updatedCustomerData = customerData.map((customer) => ({
   })),
 }));
 
+const invoiceTableHeader = [
+  "",
+  "Invoice Id",
+  "Name",
+  "Email",
+  "Date",
+  "Status",
+];
+
+const invoiceTableData = [
+  {
+    invoiceId: "#876364",
+    name: "Arrora Gaur",
+    email: "arroragaurl@gmail.com",
+    date: "12 Dec, 2020",
+    status: "complete",
+  },
+  {
+    invoiceId: "#876123",
+    name: "James Mulison",
+    email: "jamesmulison@gmail.com",
+    date: "10 Dec, 2020",
+    status: "pending",
+  },
+  {
+    invoiceId: "#876213",
+    name: "Robert Bacins",
+    email: "robertbacins@gmail.com",
+    date: "09 Dec, 2020",
+    status: "complete",
+  },
+  {
+    invoiceId: "#876987",
+    name: "Bethany Jackson",
+    email: "bethanyjackson@gmail.com",
+    date: "09 Dec, 2020",
+    status: "cancelled",
+  },
+  {
+    invoiceId: "#876543",
+    name: "Michael Stern",
+    email: "michaelstern@gmail.com",
+    date: "15 Dec, 2020",
+    status: "complete",
+  },
+  {
+    invoiceId: "#876654",
+    name: "Sophia Harris",
+    email: "sophiaharris@gmail.com",
+    date: "17 Dec, 2020",
+    status: "pending",
+  },
+  {
+    invoiceId: "#876765",
+    name: "Liam Anderson",
+    email: "liamanderson@gmail.com",
+    date: "18 Dec, 2020",
+    status: "complete",
+  },
+  {
+    invoiceId: "#876876",
+    name: "Olivia Carter",
+    email: "oliviacarter@gmail.com",
+    date: "19 Dec, 2020",
+    status: "cancelled",
+  },
+  {
+    invoiceId: "#876987",
+    name: "Noah Peterson",
+    email: "noahpeterson@gmail.com",
+    date: "20 Dec, 2020",
+    status: "pending",
+  },
+  {
+    invoiceId: "#877098",
+    name: "Emma Thompson",
+    email: "emmathompson@gmail.com",
+    date: "21 Dec, 2020",
+    status: "complete",
+  },
+];
+
 export {
   sideBarMenu,
   homeCategory,
@@ -366,4 +448,6 @@ export {
   analyticsTableData,
   custermerTableHeader,
   updatedCustomerData,
+  invoiceTableHeader,
+  invoiceTableData,
 };

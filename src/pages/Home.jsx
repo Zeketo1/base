@@ -3,8 +3,15 @@ import { homeCategory, topSelling } from "../utils/contants";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { PieChartDonut } from "@/components/PieChartDonut";
 import DashboardTable from "@/components/DashboardTable";
+import { useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = () => {
+  const { setActive } = useOutletContext();
+  useEffect(() => {
+    setActive(false);
+  }, []);
+  
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
       <div className="flex justify-between py-1 mb-5">
@@ -51,7 +58,9 @@ const Home = () => {
       </div>
       <div className="gap-7 grid grid-cols-[60%_37%]">
         <div className="relative bg-white shadow-md rounded-lg">
-          <p className="flex ml-5 justify-between text-left mt-4 text-sm font-semibold">Recent Orders</p>
+          <p className="flex ml-5 justify-between text-left mt-4 text-sm font-semibold">
+            Recent Orders
+          </p>
           <DashboardTable />
         </div>
         <div className="px-5 pt-5 pb-1 h-full bg-white shadow-md rounded-lg w-full">
@@ -60,7 +69,12 @@ const Home = () => {
           </h3>
           <div>
             {topSelling.map(({ image, name, price, ratings }, i) => (
-              <div className={`flex gap-5 items-center ${i === 0 && "border-b"} py-4`} key={i}>
+              <div
+                className={`flex gap-5 items-center ${
+                  i === 0 && "border-b"
+                } py-4`}
+                key={i}
+              >
                 <img
                   className="h-[110px] w-[110px] rounded-lg object-cover "
                   src={image}

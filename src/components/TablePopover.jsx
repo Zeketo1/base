@@ -147,7 +147,7 @@ const TablePopover = ({ children, customerData }) => {
 };
 
 TablePopover.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   customerData: PropTypes.object.isRequired,
 };
 
