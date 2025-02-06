@@ -30,7 +30,7 @@ const CustomerDialog = ({ children }) => {
   const [age, setAge] = useState();
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
 
@@ -44,7 +44,13 @@ const CustomerDialog = ({ children }) => {
     setPreview(previewURLs);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpeg", ".jpg", ".png", ".gif"],
+    },
+    maxFiles: 1,
+  });
 
   // Handle form submission
   const handleUpdate = async (e) => {
@@ -52,15 +58,28 @@ const CustomerDialog = ({ children }) => {
     setLoading(true);
     setTimeout(async () => {
       try {
-        const response = await axios.post("http://localhost:3300/customer", {
-          name,
-          occupation,
-          email,
-          phone,
-          age,
-          address,
-          gender,
-        });
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("occupation", occupation);
+        formData.append("email", email);
+        formData.append("phone", phone);
+        formData.append("age", age);
+        formData.append("address", address);
+        formData.append("gender", gender);
+
+        // Append the file with the correct field name
+        if (image) {
+          formData.append("profileImage", image); // Must match multer's field name
+        }
+        const response = await axios.post(
+          "http://localhost:3300/customer",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Important for file uploads
+            },
+          }
+        );
         showToast("Customer Added", "success");
         console.log("Update Successful:", response.data);
 
@@ -100,9 +119,7 @@ const CustomerDialog = ({ children }) => {
                     className=" flex items-center justify-center h-[130px] w-[130px] rounded-full bg-gray-300"
                   >
                     <input {...getInputProps()} />
-                    {image.length === 0 && (
-                      <IoIosCamera className="text-[35px]" />
-                    )}
+                    {!image && <IoIosCamera className="text-[35px]" />}
                     {preview && (
                       <img
                         src={preview}
@@ -130,7 +147,7 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      required
+                      // required
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -140,7 +157,7 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={occupation}
                       onChange={(e) => setOccupation(e.target.value)}
-                      required
+                      // required
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -150,7 +167,7 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      required
+                      // required
                       type="email"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -160,7 +177,7 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      required
+                      // required
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -170,7 +187,7 @@ const CustomerDialog = ({ children }) => {
                     <Select
                       value={gender}
                       onValueChange={(value) => setGender(value)}
-                      required
+                      // required
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Gender" />
@@ -195,7 +212,7 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
-                      required
+                      // required
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
