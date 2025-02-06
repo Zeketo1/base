@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "baseUrl": ".", // Sets the base URL for module resolution
     "paths": {
       "@/*": ["src/*"] // Maps "@/some-module" to "src/some-module"

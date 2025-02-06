@@ -36,6 +36,7 @@ import henry from "../assets/customer/henry.svg";
 import min from "../assets/customer/min.jpg";
 import josh from "../assets/customer/josh.svg";
 import kelvin from "../assets/customer/kelvin.svg";
+import { toast } from "react-toastify";
 
 const sideBarMenu = [
   { Icon: BiSolidCategory, name: "Dashboard", path: "/" },
@@ -140,6 +141,8 @@ const productAnalytics = [
   },
 ];
 
+// DB intigration starts here
+
 const analyticsTableHeader = [
   "SN",
   "Name",
@@ -214,7 +217,6 @@ const customerData = [
     age: 28,
     address: "123 Maple St, Springfield, IL",
     occupation: "Software Engineer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Jane Smith",
@@ -225,7 +227,6 @@ const customerData = [
     age: 32,
     address: "456 Oak St, Los Angeles, CA",
     occupation: "Graphic Designer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Alice Johnson",
@@ -236,7 +237,6 @@ const customerData = [
     age: 25,
     address: "789 Pine St, Miami, FL",
     occupation: "Content Writer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Bob Brown",
@@ -247,7 +247,6 @@ const customerData = [
     age: 45,
     address: "101 Elm St, Austin, TX",
     occupation: "Marketing Manager",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Charlie Davis",
@@ -258,7 +257,6 @@ const customerData = [
     age: 38,
     address: "202 Cedar St, Denver, CO",
     occupation: "Project Manager",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Mark Evans",
@@ -269,7 +267,6 @@ const customerData = [
     age: 29,
     address: "303 Birch St, Seattle, WA",
     occupation: "UX Designer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Franklin Moore",
@@ -280,7 +277,6 @@ const customerData = [
     age: 50,
     address: "404 Walnut St, Boston, MA",
     occupation: "Business Analyst",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Grace Wilson",
@@ -291,7 +287,6 @@ const customerData = [
     age: 26,
     address: "505 Aspen St, Portland, OR",
     occupation: "Data Scientist",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Henry King",
@@ -302,7 +297,6 @@ const customerData = [
     age: 30,
     address: "606 Fir St, Chicago, IL",
     occupation: "HR Specialist",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Min Lee",
@@ -313,7 +307,6 @@ const customerData = [
     age: 34,
     address: "707 Spruce St, San Francisco, CA",
     occupation: "Web Developer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Josh Martinez",
@@ -324,7 +317,6 @@ const customerData = [
     age: 27,
     address: "808 Cypress St, Houston, TX",
     occupation: "Digital Marketer",
-    percent: generateRandomPercentages(),
   },
   {
     name: "Kevin White",
@@ -335,7 +327,6 @@ const customerData = [
     age: 42,
     address: "909 Redwood St, Phoenix, AZ",
     occupation: "Accountant",
-    percent: generateRandomPercentages(),
   },
 ];
 
@@ -349,6 +340,7 @@ const getRandomDesktopValue = () => Math.floor(Math.random() * 500) + 50;
 const months = ["January", "February", "March", "April", "May", "June"];
 const updatedCustomerData = customerData.map((customer) => ({
   ...customer,
+  percent: generateRandomPercentages(),
   chartData: months.map((month) => ({
     month,
     desktop: getRandomDesktopValue(),
@@ -437,6 +429,26 @@ const invoiceTableData = [
   },
 ];
 
+const showToast = (message, type) => {
+  toast[type](message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      icon: type === "success" ? "🎉" : "⚠️",
+      style: {
+          backgroundColor: type === "success" ? "#48bb78" : "#f56565",
+          color: "#fff",
+      },
+      className: `custom-toast-${type}`,
+      bodyClassName: `custom-toast-${type}-body`,
+  });
+};
+
 export {
   sideBarMenu,
   homeCategory,
@@ -450,4 +462,5 @@ export {
   updatedCustomerData,
   invoiceTableHeader,
   invoiceTableData,
+  showToast
 };

@@ -1,6 +1,7 @@
 import { LuPlus } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import CustomerTable from "@/components/CustomerTable";
+import CustomerDialog from "@/components/CustomerDialog";
 const Customer = () => {
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
@@ -16,10 +17,12 @@ const Customer = () => {
             Customer
           </div>
         </div>
-        <div className="flex items-center text-white gap-2 bg-primary1 py-2 px-4 rounded-md shadow-lg">
-          <LuPlus />
-          <p className="text-[13px]">Add Customer</p>
-        </div>
+        <CustomerDialog>
+          <div className="flex items-center text-white gap-2 bg-primary1 py-2 px-4 rounded-md shadow-lg">
+            <LuPlus />
+            <p className="text-[13px]">Add Customer</p>
+          </div>
+        </CustomerDialog>
       </div>
       <div className="relative bg-white shadow-md rounded-lg">
         <CustomerTable />

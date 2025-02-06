@@ -11,11 +11,15 @@ const Invoice = () => {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
+    setActive(false);
+  }, [setActive])
+
+  useEffect(() => {
     const filteredDataEffect = invoiceTableData.filter((data) =>
       data.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filteredDataEffect);
-  });
+  }, [searchTerm]);
   // Filter the data based on the search term
 
   return (

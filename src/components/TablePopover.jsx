@@ -77,23 +77,35 @@ const TablePopover = ({ children, customerData }) => {
         <form className="flex flex-col gap-4">
           <div className="flex flex-col gap-2 justify-center">
             <label className="text-[14px]">Name:</label>
-            <input value={customerData.name} type="text" className="w-full px-3 py-2 border rounded-md" />
+            <input
+              value={customerData.name}
+              type="text"
+              className="w-full px-3 py-2 border rounded-md"
+            />
           </div>
           <div className="flex flex-col gap-2 justify-center">
             <label className="text-[14px]">Occupation:</label>
-            <input value={customerData.occupation} type="text" className="w-full px-3 py-2 border rounded-md" />
+            <input
+              value={customerData.occupation}
+              type="text"
+              className="w-full px-3 py-2 border rounded-md"
+            />
           </div>
           <div className="flex flex-col gap-2 justify-center">
             <label className="text-[14px]">Email:</label>
             <input
-            value={customerData.email}
+              value={customerData.email}
               type="email"
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
           <div className="flex flex-col gap-2 justify-center">
             <label className="text-[14px]">Phone Number:</label>
-            <input value={customerData.phone} type="text" className="w-full px-3 py-2 border rounded-md" />
+            <input
+              value={customerData.phone}
+              type="text"
+              className="w-full px-3 py-2 border rounded-md"
+            />
           </div>
           <div className="flex flex-col gap-2 justify-center">
             <label className="text-[14px]">Gender:</label>
@@ -117,7 +129,6 @@ const TablePopover = ({ children, customerData }) => {
       </div>
     ),
   };
-  console.log(customerData.percent[0], customerData.percent[1]);
 
   return (
     <Popover>

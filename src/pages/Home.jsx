@@ -4,14 +4,22 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { PieChartDonut } from "@/components/PieChartDonut";
 import DashboardTable from "@/components/DashboardTable";
 import { useOutletContext } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const Home = () => {
   const { setActive } = useOutletContext();
+  const [data, setData] = useState([]);
   useEffect(() => {
+    axios
+      .get("http://localhost:3300/customer")
+      .then((response) => setData(response.data))
+      .catch((error) => console.error(error));
     setActive(false);
   }, []);
-  
+
+  console.log(data);
+
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
       <div className="flex justify-between py-1 mb-5">
