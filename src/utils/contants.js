@@ -24,18 +24,6 @@ import kids from "../assets/analytics/kids.svg";
 import watch from "../assets/analytics/watch.svg";
 import badge from "../assets/analytics/badge.svg";
 import top from "../assets/analytics/top.svg";
-import john from "../assets/customer/john.svg";
-import jane from "../assets/customer/jane.svg";
-import alice from "../assets/customer/alice.svg";
-import bob from "../assets/customer/bob.svg";
-import charlie from "../assets/customer/charlie.svg";
-import mark from "../assets/customer/mark.svg";
-import franklin from "../assets/customer/franklin.svg";
-import grace from "../assets/customer/grace.svg";
-import henry from "../assets/customer/henry.svg";
-import min from "../assets/customer/min.jpg";
-import josh from "../assets/customer/josh.svg";
-import kelvin from "../assets/customer/kelvin.svg";
 import { toast } from "react-toastify";
 
 const sideBarMenu = [
@@ -207,146 +195,6 @@ const analyticsTableData = [
 
 const custermerTableHeader = ["Name", "Email", "Phone Number", "Gender", "yoo"];
 
-const customerData = [
-  {
-    name: "John Doe",
-    email: "johndoe@example.com",
-    image: john,
-    phone: "+1-555-123-4567",
-    gender: "Male",
-    age: 28,
-    address: "123 Maple St, Springfield, IL",
-    occupation: "Software Engineer",
-  },
-  {
-    name: "Jane Smith",
-    email: "janesmith@example.com",
-    image: jane,
-    phone: "+1-555-234-5678",
-    gender: "Female",
-    age: 32,
-    address: "456 Oak St, Los Angeles, CA",
-    occupation: "Graphic Designer",
-  },
-  {
-    name: "Alice Johnson",
-    email: "alicej@example.com",
-    image: alice,
-    phone: "+1-555-345-6789",
-    gender: "Female",
-    age: 25,
-    address: "789 Pine St, Miami, FL",
-    occupation: "Content Writer",
-  },
-  {
-    name: "Bob Brown",
-    email: "bobbrown@example.com",
-    image: bob,
-    phone: "+1-555-456-7890",
-    gender: "Male",
-    age: 45,
-    address: "101 Elm St, Austin, TX",
-    occupation: "Marketing Manager",
-  },
-  {
-    name: "Charlie Davis",
-    email: "charlied@example.com",
-    image: charlie,
-    phone: "+1-555-567-8901",
-    gender: "Male",
-    age: 38,
-    address: "202 Cedar St, Denver, CO",
-    occupation: "Project Manager",
-  },
-  {
-    name: "Mark Evans",
-    email: "markevans@example.com",
-    image: mark,
-    phone: "+1-555-678-9012",
-    gender: "Male",
-    age: 29,
-    address: "303 Birch St, Seattle, WA",
-    occupation: "UX Designer",
-  },
-  {
-    name: "Franklin Moore",
-    email: "franklinmoore@example.com",
-    image: franklin,
-    phone: "+1-555-789-0123",
-    gender: "Male",
-    age: 50,
-    address: "404 Walnut St, Boston, MA",
-    occupation: "Business Analyst",
-  },
-  {
-    name: "Grace Wilson",
-    email: "gracewilson@example.com",
-    image: grace,
-    phone: "+1-555-890-1234",
-    gender: "Female",
-    age: 26,
-    address: "505 Aspen St, Portland, OR",
-    occupation: "Data Scientist",
-  },
-  {
-    name: "Henry King",
-    email: "henryking@example.com",
-    image: henry,
-    phone: "+1-555-901-2345",
-    gender: "Male",
-    age: 30,
-    address: "606 Fir St, Chicago, IL",
-    occupation: "HR Specialist",
-  },
-  {
-    name: "Min Lee",
-    email: "minlee@example.com",
-    image: min,
-    phone: "+1-555-012-3456",
-    gender: "Female",
-    age: 34,
-    address: "707 Spruce St, San Francisco, CA",
-    occupation: "Web Developer",
-  },
-  {
-    name: "Josh Martinez",
-    email: "joshmartinez@example.com",
-    image: josh,
-    phone: "+1-555-123-4568",
-    gender: "Female",
-    age: 27,
-    address: "808 Cypress St, Houston, TX",
-    occupation: "Digital Marketer",
-  },
-  {
-    name: "Kevin White",
-    email: "kevinwhite@example.com",
-    image: kelvin,
-    phone: "+1-555-234-5679",
-    gender: "Male",
-    age: 42,
-    address: "909 Redwood St, Phoenix, AZ",
-    occupation: "Accountant",
-  },
-];
-
-function generateRandomPercentages() {
-  const random1 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
-  const random2 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
-  return [random1, random2];
-}
-
-const getRandomDesktopValue = () => Math.floor(Math.random() * 500) + 50;
-const months = ["January", "February", "March", "April", "May", "June"];
-const updatedCustomerData = customerData.map((customer) => ({
-  ...customer,
-  percent: generateRandomPercentages(),
-  chartData: months.map((month) => ({
-    month,
-    desktop: getRandomDesktopValue(),
-  })),
-}));
-
 const invoiceTableHeader = [
   "",
   "Invoice Id",
@@ -449,6 +297,28 @@ const showToast = (message, type) => {
   });
 };
 
+const formatPhoneNumber = (phone) => {
+    // Check if it's a US number
+    if (phone.startsWith("+1")) {
+      const cleaned = phone.slice(2).replace(/\D/g, "");
+      return `+1-${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(
+        6
+      )}`;
+    }
+
+    // Check if it's a Nigerian number
+    if (phone.startsWith("+234")) {
+      const cleaned = phone.slice(4).replace(/\D/g, "");
+      return `+234-${cleaned.slice(0, 3)}-${cleaned.slice(
+        3,
+        6
+      )}-${cleaned.slice(6)}`;
+    }
+
+    // Return original if not US/Nigeria
+    return phone;
+  };
+
 export {
   sideBarMenu,
   homeCategory,
@@ -459,8 +329,8 @@ export {
   analyticsTableHeader,
   analyticsTableData,
   custermerTableHeader,
-  updatedCustomerData,
   invoiceTableHeader,
   invoiceTableData,
-  showToast
+  showToast,
+  formatPhoneNumber
 };

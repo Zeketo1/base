@@ -5,6 +5,7 @@ import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Logo from "@/assets/Logo.svg";
 import { sideBarMenu } from "@/utils/contants";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const Sidebar = ({ active, setActive }) => {
   const location = useLocation();
@@ -18,7 +19,7 @@ const Sidebar = ({ active, setActive }) => {
       } sticky top-0 left-0 transition-all duration-500 h-screen py-4 mr-7`}
     >
       <div
-        className={`w-full flex flex-col items-center justify-between ${
+        className={`relative w-full flex flex-col items-center justify-between ${
           !active && "shadow-md bg-white"
         } h-full py-6 rounded-md`}
       >
@@ -63,7 +64,6 @@ const Sidebar = ({ active, setActive }) => {
                     ? "bg-gradient-to-r from-[#615bff5b] via-white to-white"
                     : null
                 } w-full overflow-hidden`}
-                onClick={() => setActive(!active)}
               >
                 <Icon
                   className={`flex-shrink-0 text-[20px] ${
@@ -77,6 +77,14 @@ const Sidebar = ({ active, setActive }) => {
               </Link>
             ))}
           </div>
+        </div>
+        <div
+          className="bg-white p-2 rounded-full shadow-md   absolute -right-4 top-[130px]"
+          onClick={() => setActive(!active)}
+        >
+          <MdOutlineKeyboardArrowRight
+            className={`${active ? "rotate-180" : "rotate-0"} transition-all ease-in`}
+          />
         </div>
         <div className="flex pl-[18px] gap-5 items-center w-full overflow-hidden">
           <TbLogout className="flex-shrink-0 text-[20px]" />

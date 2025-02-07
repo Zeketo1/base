@@ -20,13 +20,6 @@ const InvoicePopover = ({ children, customerData }) => {
   const [customerDate, setCustomerDate] = useState(customerData.date);
   const [customerStatus, setCustomerStatus] = useState(customerData.status);
 
-  // const customerValueChange = () => {
-  //   customerData.name = customerName;
-  //   customerData.email = customerEmail;
-  //   customerData.date = customerDate;
-  //   customerData.status = customerStatus;
-  // };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     customerData.name = customerName;

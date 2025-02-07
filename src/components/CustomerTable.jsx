@@ -1,4 +1,4 @@
-import { custermerTableHeader } from "@/utils/contants";
+import { custermerTableHeader, formatPhoneNumber } from "@/utils/contants";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import {
   Table,
@@ -17,18 +17,19 @@ import Default from "../assets/customer/default.jpg";
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);
 
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get("http://localhost:3300/customer");
+      const sortedData = response.data.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setCustomerData(sortedData);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    }
+  };
+  
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get("http://localhost:3300/customer");
-        const sortedData = response.data.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
-        setCustomerData(sortedData);
-      } catch (error) {
-        console.error("Error fetching customers:", error);
-      }
-    };
     fetchCustomers();
   }, []);
 
@@ -49,27 +50,6 @@ const CustomerTable = () => {
     })),
   }));
 
-  const formatPhoneNumber = (phone) => {
-    // Check if it's a US number
-    if (phone.startsWith("+1")) {
-      const cleaned = phone.slice(2).replace(/\D/g, "");
-      return `+1-${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(
-        6
-      )}`;
-    }
-
-    // Check if it's a Nigerian number
-    if (phone.startsWith("+234")) {
-      const cleaned = phone.slice(4).replace(/\D/g, "");
-      return `+234-${cleaned.slice(0, 3)}-${cleaned.slice(
-        3,
-        6
-      )}-${cleaned.slice(6)}`;
-    }
-
-    // Return original if not US/Nigeria
-    return phone;
-  };
 
   return (
     <Table>

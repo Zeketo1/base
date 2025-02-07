@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import PropTypes from "prop-types";
 
-const TableAlertDialog = ({ children }) => {
+const TableAlertDialog = ({ children, handleDelete }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>{children}</AlertDialogTrigger>
@@ -25,7 +25,7 @@ const TableAlertDialog = ({ children }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -34,6 +34,7 @@ const TableAlertDialog = ({ children }) => {
 
 TableAlertDialog.propTypes = {
   children: PropTypes.element.isRequired,
+  handleDelete: PropTypes.func,
 };
 
 export default TableAlertDialog;
