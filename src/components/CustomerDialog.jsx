@@ -92,6 +92,7 @@ const CustomerDialog = ({ children }) => {
         setAddress("");
         setGender("");
         setImage("");
+        setPreview("");
       } catch (error) {
         console.error("Error updating data:", error);
         showToast("Error Adding Customer", "error");
@@ -147,17 +148,8 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      // required
-                      type="text"
-                      className="w-full px-3 py-2 border rounded-md"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2 justify-center">
-                    <label className="text-[14px]">Occupation:</label>
-                    <input
-                      value={occupation}
-                      onChange={(e) => setOccupation(e.target.value)}
-                      // required
+                      required
+                      placeholder="Joe Doe"
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -167,8 +159,20 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      // required
+                      required
+                      placeholder="joedoe@example.com"
                       type="email"
+                      className="w-full px-3 py-2 border rounded-md"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 justify-center">
+                    <label className="text-[14px]">Occupation:</label>
+                    <input
+                      value={occupation}
+                      onChange={(e) => setOccupation(e.target.value)}
+                      required
+                      placeholder="Software Developer"
+                      type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
                   </div>
@@ -177,7 +181,8 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      // required
+                      required
+                      placeholder="+2347109740480"
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />
@@ -187,7 +192,7 @@ const CustomerDialog = ({ children }) => {
                     <Select
                       value={gender}
                       onValueChange={(value) => setGender(value)}
-                      // required
+                      required
                     >
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Gender" />
@@ -204,6 +209,7 @@ const CustomerDialog = ({ children }) => {
                       value={age}
                       onChange={(e) => setAge(e.target.value)}
                       type="number"
+                      placeholder="50"
                       className="w-full px-3 py-2 border rounded-md"
                     />
                   </div>
@@ -212,7 +218,8 @@ const CustomerDialog = ({ children }) => {
                     <input
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
-                      // required
+                      required
+                      placeholder="North Cresk, LA"
                       type="text"
                       className="w-full px-3 py-2 border rounded-md"
                     />

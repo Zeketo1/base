@@ -18,21 +18,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import Default from "../assets/customer/default.jpg";
 
 const TablePopover = ({ children, customerData }) => {
   const chartData = [{ browser: "safari", visitors: 70, fill: "#FFD66B" }];
 
   const chartData2 = [{ browser: "safari", visitors: 60, fill: "#5B93FF" }];
 
+  const formatPhoneNumber = (phone) => {
+    // Check if it's a US number
+    if (phone.startsWith("+1")) {
+      const cleaned = phone.slice(2).replace(/\D/g, "");
+      return `+1-${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(
+        6
+      )}`;
+    }
+
+    // Check if it's a Nigerian number
+    if (phone.startsWith("+234")) {
+      const cleaned = phone.slice(4).replace(/\D/g, "");
+      return `+234-${cleaned.slice(0, 3)}-${cleaned.slice(
+        3,
+        6
+      )}-${cleaned.slice(6)}`;
+    }
+
+    // Return original if not US/Nigeria
+    return phone;
+  };
+
   const elementStyles = {
     view: () => (
       <div className="py-5">
         <div className="border-b pb-5 flex flex-col items-center justify-center gap-3">
-          <img
-            src={customerData.image}
-            alt={customerData.name}
-            className="h-[130px] w-[130px] object-cover rounded-full"
-          />
+          {customerData.profileImage ? (
+            <img
+              src={`data:${customerData.mimetype};base64,${customerData.profileImage}`}
+              alt={customerData.name}
+              className="h-[130px] w-[130px] object-cover rounded-full"
+            />
+          ) : (
+            <img
+              src={Default}
+              alt="default"
+              className="h-[130px] w-[130px] object-cover rounded-full"
+            />
+          )}
           <h1 className="text-[19px] text-black">{customerData.name}</h1>
           <p>{customerData.occupation}</p>
         </div>
@@ -45,7 +76,9 @@ const TablePopover = ({ children, customerData }) => {
             </div>
             <div className="flex gap-2 items-center border-b py-3 pl-3">
               <MdPhone className="text-[23px]" />
-              <p className="text-[15px]">{customerData.phone}</p>
+              <p className="text-[15px]">
+                {formatPhoneNumber(customerData.phone)}
+              </p>
             </div>
             <div className="flex gap-2 items-center border-b py-3 pl-3">
               <IoLocationSharp className="text-[23px]" />

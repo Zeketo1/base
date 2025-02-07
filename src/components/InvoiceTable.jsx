@@ -38,7 +38,7 @@ const InvoiceTable = ({ filteredData }) => {
       <TableBody className="text-center">
         {filteredData.length == 0 ? (
           <TableRow>
-            <TableCell colSpan={invoiceTableHeader.length + 1}>
+            <TableCell className="text-center" colSpan={invoiceTableHeader.length + 1}>
               Customer Name Not Found
             </TableCell>
           </TableRow>

@@ -110,28 +110,27 @@ body::-webkit-scrollbar {
   animation: circle-inner162 1.8s ease infinite 0.05s;
 }
 
-#wifi-loader .text {
+.text {
   position: absolute;
-  bottom: -40px;
+  left: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: lowercase;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.2px;
 }
 
-#wifi-loader .text::before,
-#wifi-loader .text::after {
+.text::before,
+.text::after {
   content: attr(data-text);
 }
 
-#wifi-loader .text::before {
-  color: var(--text-color);
+.text::before {
+  color: #605BFF;
 }
 
-#wifi-loader .text::after {
+.text::after {
   color: var(--front-color-in);
   animation: text-animation76 3.6s ease infinite;
   position: absolute;

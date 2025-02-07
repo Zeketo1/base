@@ -46,7 +46,11 @@ router.post("/", upload.single("profileImage"), async (req, res) => {
       fs.unlinkSync(file.path);
     }
 
-    const customer = new CustomerData({ ...body, profileImage: base64Image });
+    const customer = new CustomerData({
+      ...body,
+      profileImage: base64Image,
+      minetype: file.mimetype,
+    });
 
     const newCustomer = await customer.save();
     res.status(201).json(newCustomer);
@@ -55,9 +59,11 @@ router.post("/", upload.single("profileImage"), async (req, res) => {
       res
         .status(400)
         .json({ message: "Validation failed", details: error.errors });
+      console.log(error.message);
     } else if (error.code === 11000) {
       // Duplicate key error
       res.status(400).json({ message: "Email already exists" });
+      console.log(error.message);
     } else {
       res.status(500).json({ message: "Internal server error" });
       console.log(error.message);

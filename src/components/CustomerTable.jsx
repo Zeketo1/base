@@ -1,4 +1,4 @@
-import { custermerTableHeader, updatedCustomerData } from "@/utils/contants";
+import { custermerTableHeader } from "@/utils/contants";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import {
   Table,
@@ -10,8 +10,67 @@ import {
   TableRow,
 } from "./ui/table";
 import TablePopover from "./TablePopover";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Default from "../assets/customer/default.jpg";
 
 const CustomerTable = () => {
+  const [customerData, setCustomerData] = useState([]);
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await axios.get("http://localhost:3300/customer");
+        const sortedData = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setCustomerData(sortedData);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+      }
+    };
+    fetchCustomers();
+  }, []);
+
+  function generateRandomPercentages() {
+    const random1 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
+    const random2 = Math.floor(Math.random() * 71) + 30; // Random number between 50 and 100
+    return [random1, random2];
+  }
+
+  const getRandomDesktopValue = () => Math.floor(Math.random() * 500) + 50;
+  const months = ["January", "February", "March", "April", "May", "June"];
+  const updatedCustomerData = customerData.map((customer) => ({
+    ...customer,
+    percent: generateRandomPercentages(),
+    chartData: months.map((month) => ({
+      month,
+      desktop: getRandomDesktopValue(),
+    })),
+  }));
+
+  const formatPhoneNumber = (phone) => {
+    // Check if it's a US number
+    if (phone.startsWith("+1")) {
+      const cleaned = phone.slice(2).replace(/\D/g, "");
+      return `+1-${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(
+        6
+      )}`;
+    }
+
+    // Check if it's a Nigerian number
+    if (phone.startsWith("+234")) {
+      const cleaned = phone.slice(4).replace(/\D/g, "");
+      return `+234-${cleaned.slice(0, 3)}-${cleaned.slice(
+        3,
+        6
+      )}-${cleaned.slice(6)}`;
+    }
+
+    // Return original if not US/Nigeria
+    return phone;
+  };
+
   return (
     <Table>
       <TableCaption className="hidden">Recent Orders</TableCaption>
@@ -30,36 +89,55 @@ const CustomerTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {updatedCustomerData.map((data, i) => (
-          <TableRow className="text-[13px]" key={i}>
-            <TableCell className="flex items-center gap-3 text-[12px]">
-              <img
-                src={data.image}
-                alt={data.name}
-                className="h-[30px] w-[30px] object-cover rounded-full"
-              />
-              {data.name}
-            </TableCell>
-            <TableCell>{data.email}</TableCell>
-            <TableCell>{data.phone}</TableCell>
-            <TableCell>
-              <div
-                className={`text-center rounded-full p-1 w-[70%] ${
-                  data.gender == "Female"
-                    ? " text-pink-500 bg-[#be188c2c]"
-                    : "text-[#0c5dfd] bg-[#5b92ff50]"
-                }`}
-              >
-                {data.gender}
-              </div>
-            </TableCell>
-            <TableCell>
-              <TablePopover customerData={data}>
-                <HiOutlineDotsHorizontal />
-              </TablePopover>
+        {updatedCustomerData.length === 0 ? (
+          <TableRow>
+            <TableCell
+              className="text-center py-4"
+              colSpan={custermerTableHeader.length + 1}
+            >
+              <div data-text="Loading...." className="text"></div>
             </TableCell>
           </TableRow>
-        ))}
+        ) : (
+          updatedCustomerData.map((data, i) => (
+            <TableRow className="text-[13px]" key={i}>
+              <TableCell className="flex items-center gap-3 text-[12px]">
+                {data.profileImage ? (
+                  <img
+                    src={`data:${data.mimetype};base64,${data.profileImage}`}
+                    alt={data.name}
+                    className="h-[30px] w-[30px] object-cover rounded-full"
+                  />
+                ) : (
+                  <img
+                    src={Default}
+                    alt="default"
+                    className="h-[30px] w-[30px] object-cover rounded-full"
+                  />
+                )}
+                {data.name}
+              </TableCell>
+              <TableCell>{data.email}</TableCell>
+              <TableCell>{formatPhoneNumber(data.phone)}</TableCell>
+              <TableCell>
+                <div
+                  className={`text-center capitalize rounded-full p-1 w-[70%] ${
+                    data.gender == "female"
+                      ? " text-pink-500 bg-[#be188c2c]"
+                      : "text-[#0c5dfd] bg-[#5b92ff50]"
+                  }`}
+                >
+                  {data.gender}
+                </div>
+              </TableCell>
+              <TableCell>
+                <TablePopover customerData={data}>
+                  <HiOutlineDotsHorizontal />
+                </TablePopover>
+              </TableCell>
+            </TableRow>
+          ))
+        )}
       </TableBody>
     </Table>
   );
