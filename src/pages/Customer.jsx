@@ -24,7 +24,7 @@ const Customer = () => {
           </div>
         </CustomerDialog>
       </div>
-      <div className="relative bg-white shadow-md rounded-lg">
+      <div className="relative w-full overflow-auto px-5 py-3 bg-white shadow-md rounded-lg">
         <CustomerTable />
       </div>
     </div>

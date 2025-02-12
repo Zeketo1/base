@@ -2,28 +2,51 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import InvoiceTable from "@/components/InvoiceTable";
-import { invoiceTableData } from "@/utils/contants";
+import axios from "axios";
 
 const Invoice = () => {
   const { setActive } = useOutletContext();
-
+  const [invoiceTableData, setInvoiceTableData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
+  const fetchCustomers = async () => {
+    try {
+      const response = await axios.get("http://localhost:3300/invoice");
+      const sortedData = response.data.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setInvoiceTableData(sortedData);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    }
+  };
+
+  // Fetch data only once when the component mounts
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  const invoiceStatusUpdate = filteredData.map((invoice) => ({
+    ...invoice,
+    status: "pending",
+  }));
+
+  console.log(invoiceTableData);
+
   useEffect(() => {
     setActive(false);
-  }, [setActive])
+  }, [setActive]);
 
   useEffect(() => {
     const filteredDataEffect = invoiceTableData.filter((data) =>
       data.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filteredDataEffect);
-  }, [searchTerm]);
-  // Filter the data based on the search term
+  }, [searchTerm, invoiceTableData]);
 
   return (
-    <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
+    <div className="flex-1 flex flex-col gap-7 py-4 pr-7 w-full">
       <div className="flex justify-between items-center">
         <p className="font-semibold text-[15px]">Invoice</p>
         <div className="flex gap-4 items-center">
@@ -42,8 +65,8 @@ const Invoice = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white shadow-md rounded-lg">
-        <InvoiceTable filteredData={filteredData} />
+      <div className="relative w-full overflow-auto px-5 py-3 bg-white shadow-md rounded-lg">
+        <InvoiceTable filteredData={invoiceStatusUpdate} />
       </div>
     </div>
   );

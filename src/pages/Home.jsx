@@ -65,7 +65,7 @@ const Home = () => {
         </div>
       </div>
       <div className="gap-7 grid grid-cols-[60%_37%]">
-        <div className="relative bg-white shadow-md rounded-lg">
+        <div className="relative w-full overflow-auto px-5 py-3 bg-white shadow-md rounded-lg">
           <p className="flex ml-5 justify-between text-left mt-4 text-sm font-semibold">
             Recent Orders
           </p>

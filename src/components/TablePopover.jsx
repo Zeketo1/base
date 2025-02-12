@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import Default from "../assets/customer/default.jpg";
+import DefaultImg from "../assets/customer/default.jpg";
 import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { formatPhoneNumber, showToast } from "@/utils/contants";
@@ -41,7 +41,7 @@ const TablePopover = ({ children, customerData }) => {
   const [intialImage, setIntialImage] = useState(customerData.profileImage);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [preview, setPreview] = useState(customerData.image);
+  const [preview, setPreview] = useState("");
 
   useEffect(() => {
     if (image) {
@@ -67,7 +67,7 @@ const TablePopover = ({ children, customerData }) => {
     maxFiles: 1,
   });
 
-  // Handle Post Request
+  // Handle Put Request
   const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -118,7 +118,7 @@ const TablePopover = ({ children, customerData }) => {
       const response = await axios.delete(
         `http://localhost:3300/customer/${customerData._id}`
       );
-      showToast("Customer deleted:", "success");
+      showToast("Customer Deleted Successful", "success");
       console.log("Delete Successful:", response.data);
     } catch (error) {
       console.error("Error deleting customer:", error);
@@ -137,7 +137,7 @@ const TablePopover = ({ children, customerData }) => {
             />
           ) : (
             <img
-              src={Default}
+              src={DefaultImg}
               alt="default"
               className="h-[130px] w-[130px] object-cover rounded-full"
             />

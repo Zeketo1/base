@@ -3,12 +3,12 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const Table = React.forwardRef(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto px-5 py-3">
+  // <div className="relative w-full overflow-auto px-5 py-3">
     <table
       ref={ref}
       className={cn("w-full caption-top text-sm", className)}
       {...props} />
-  </div>
+  // </div>
 ))
 Table.displayName = "Table"
 

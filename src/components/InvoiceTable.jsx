@@ -13,6 +13,8 @@ import { Checkbox } from "./ui/checkbox";
 import InvoicePopover from "./InvoicePopover";
 import PropTypes from "prop-types";
 import { FaTrash } from "react-icons/fa6";
+import Default from "../assets/customer/default.jpg";
+import { format } from "date-fns";
 
 const InvoiceTable = ({ filteredData }) => {
   return (
@@ -38,8 +40,11 @@ const InvoiceTable = ({ filteredData }) => {
       <TableBody className="text-center">
         {filteredData.length == 0 ? (
           <TableRow>
-            <TableCell className="text-center" colSpan={invoiceTableHeader.length + 1}>
-              Customer Name Not Found
+            <TableCell
+              className="text-center"
+              colSpan={invoiceTableHeader.length + 1}
+            >
+              <div data-text="Loading...." className="text"></div>
             </TableCell>
           </TableRow>
         ) : (
@@ -48,17 +53,25 @@ const InvoiceTable = ({ filteredData }) => {
               <TableCell>
                 <Checkbox />
               </TableCell>
-              <TableCell>{data.invoiceId} </TableCell>
-              <TableCell className="text-[12px]">
-                {/* <img
-                src={data.image}
-                alt={data.name}
-                className="h-[30px] w-[30px] object-cover rounded-full"
-              /> */}
+              <TableCell>#{data.invoiceId} </TableCell>
+              <TableCell className="flex items-center gap-2 text-[12px]">
+                {data.image ? (
+                  <img
+                    src={`data:${data.mimetype};base64,${data.image}`}
+                    alt={data.name}
+                    className="h-[30px] w-[30px] object-cover rounded-full"
+                  />
+                ) : (
+                  <img
+                    src={Default}
+                    alt="default"
+                    className="h-[30px] w-[30px] object-cover rounded-full"
+                  />
+                )}
                 {data.name}
               </TableCell>
               <TableCell>{data.email}</TableCell>
-              <TableCell>{data.date}</TableCell>
+              <TableCell>{format(data.date, "MMM do, yyyy")}</TableCell>
               <TableCell>
                 <div
                   className={`text-center ${
@@ -76,7 +89,7 @@ const InvoiceTable = ({ filteredData }) => {
                 </div>
               </TableCell>
               <TableCell>
-                <InvoicePopover customerData={data}>
+                <InvoicePopover invoiceData={data}>
                   <HiOutlineDotsHorizontal />
                 </InvoicePopover>
               </TableCell>

@@ -13,7 +13,7 @@ const Analytics = () => {
   const { setActive } = useOutletContext();
   useEffect(() => {
     setActive(false);
-  }, []);
+  }, [setActive]);
   
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>
@@ -87,7 +87,7 @@ const Analytics = () => {
               )
             )}
           </div>
-          <div className="relative bg-white shadow-md rounded-lg">
+          <div className="w-full overflow-auto px-5 py-3 relative bg-white shadow-md rounded-lg">
             <p className="flex ml-5 justify-between text-left mt-4 text-sm font-semibold">
               Top Selling Products
             </p>

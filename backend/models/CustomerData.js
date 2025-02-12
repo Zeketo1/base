@@ -10,6 +10,7 @@ const customerSchema = new mongoose.Schema(
     profileImage: { type: String },
     address: String,
     occupation: String,
+    mimetype: String,
   },
   { collection: "customerData" }
 );

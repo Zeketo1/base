@@ -4,6 +4,8 @@ const app = express();
 
 const mongoose = require("mongoose");
 const customer = require("./routes/customer");
+const invoice = require("./routes/invoice");
+const InvoiceData = require("./models/InvoiceData");
 
 app.use(cors());
 app.use(express.json());
@@ -14,23 +16,27 @@ mongoose
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 app.use("/customer", customer);
+app.use("/invoice", invoice);
 
-// async function addCustomer() {
-//   const customer = new CustomerData(
-//     {
-//       name: "Kevin White",
-//       email: "kevinwhite@example.com",
-//       phone: "+1-555-234-5679",
-//       gender: "Male",
-//       age: 42,
-//       address: "909 Redwood St, Phoenix, AZ",
-//       occupation: "Accountant",
-//     }
-// );
+// async function addInvoice() {
+//   const invoice = new InvoiceData({
+//     invoiceId: "495702",
+//     date: new Date("2023-12-20"),
+//     name: "Laura Palmer",
+//     email: "laura.palmer@example.com",
+//     image: "",
+//     address: "654 Twin Peaks, Washington",
+//     items: [
+//       { name: "Painting Set", price: 110, quantity: 2 },
+//       { name: "Easel", price: 130, quantity: 1 },
+//       { name: "Canvas Pack", price: 90, quantity: 3 },
+//       { name: "Brush Set", price: 60, quantity: 1 },
+//     ],
+//   });
 
 //   try {
-//     const newCustomer = await customer.save();
-//     console.log(newCustomer);
+//     const newInvoice = await invoice.save();
+//     console.log(newInvoice);
 //   } catch (error) {
 //     if (error.name === "ValidationError") {
 //       console.log({ message: "Validation failed", details: error.errors });
@@ -43,7 +49,7 @@ app.use("/customer", customer);
 //   }
 // }
 
-// addCustomer();
+// addInvoice()
 
 const port = process.env.PORT || 3300;
 
