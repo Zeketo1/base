@@ -1,9 +1,9 @@
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import PropTypes from "prop-types";
 import { CiEdit } from "react-icons/ci";
 import { MdCancel, MdDelete, MdPhone } from "react-icons/md";
-import TableAlertDialog from "./TableAlertDialog";
-import CustomerSheet from "./CustomerSheet";
+import TableAlertDialog from "../TableAlertDialog";
+import CustomerSheet from "../customer/CustomerSheet";
 import { IoIosCamera, IoIosMail } from "react-icons/io";
 import {
   Select,
@@ -11,13 +11,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "../ui/select";
 import { useCallback, useEffect, useState } from "react";
 import { showToast } from "@/utils/contants";
 import { IoLocationSharp } from "react-icons/io5";
-import DefaultImg from "../assets/customer/default.jpg";
+import DefaultImg from "../../assets/customer/default.jpg";
 import { FaRegEye } from "react-icons/fa";
-import { SheetClose } from "./ui/sheet";
+import { SheetClose } from "../ui/sheet";
 import axios from "axios";
 import InvoiceDialog from "./InvoiceDialog";
 import { useDropzone } from "react-dropzone";
@@ -39,7 +39,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 const InvoicePopover = ({ children, invoiceData }) => {
   const [name, setName] = useState(invoiceData.name);

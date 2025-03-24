@@ -8,11 +8,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
-import TablePopover from "./TablePopover";
+} from "../ui/table";
+import TablePopover from "../TablePopover";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Default from "../assets/customer/default.jpg";
+import Default from "../../assets/customer/default.jpg";
 
 const CustomerTable = () => {
   const [customerData, setCustomerData] = useState([]);

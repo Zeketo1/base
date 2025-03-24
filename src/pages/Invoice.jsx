@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
-import InvoiceTable from "@/components/InvoiceTable";
+import InvoiceTable from "@/components/invoice/InvoiceTable";
 import axios from "axios";
 
 const Invoice = () => {

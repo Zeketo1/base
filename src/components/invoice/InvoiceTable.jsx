@@ -8,13 +8,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
-import { Checkbox } from "./ui/checkbox";
+} from "../ui/table";
 import InvoicePopover from "./InvoicePopover";
 import PropTypes from "prop-types";
 import { FaTrash } from "react-icons/fa6";
-import Default from "../assets/customer/default.jpg";
+import Default from "../../assets/customer/default.jpg";
 import { format } from "date-fns";
+import { Checkbox } from "../ui/checkbox";
 
 const InvoiceTable = ({ filteredData }) => {
   return (

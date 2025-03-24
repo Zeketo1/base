@@ -38,7 +38,7 @@ const sideBarMenu = [
 ];
 
 const homeCategory = [
-  { icon: heart, color: "5b92ff2e", num: 178, text: "Save Products" },
+  { icon: heart, color: "5b92ff2e", num: 178, text: "Total sales  " },
   { icon: game, color: "ffd56b2e", num: 20, text: "Stock Products" },
   { icon: bag, color: "ff906b2e", num: 190, text: "Sales Products" },
   { icon: work, color: "615bff2e", num: 12, text: "Job Application" },

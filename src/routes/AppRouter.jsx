@@ -8,6 +8,7 @@ import Login from "@/auth/Login";
 import Signup from "@/auth/Signup";
 import PageTransition from "@/utils/PageTransition";
 import Invoice from "@/pages/Invoice";
+import SSOCallback from "@/pages/SsoCallback";
 
 const Layout = () => {
   const [active, setActive] = useState(false);
@@ -56,4 +57,8 @@ export const AppRouter = createBrowserRouter([
       </PageTransition>
     ),
   },
+  {
+    path: "/sso-callback",
+    element: <SSOCallback />,
+  }
 ]);

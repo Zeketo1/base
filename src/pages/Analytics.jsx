@@ -2,7 +2,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { LuPlus } from "react-icons/lu";
 import { AreaChartSingle } from "@/components/AreaChart";
 import { productAnalytics } from "@/utils/contants";
-import AnalyticsTable from "@/components/AnalyticsTable";
+import AnalyticsTable from "@/components/analytics/AnalyticsTable";
 import BarChartComponent from "@/components/BarChart";
 import { RadialChartStacked } from "@/components/RadialChart";
 import { Link } from "react-router-dom";

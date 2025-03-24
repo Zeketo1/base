@@ -1,7 +1,7 @@
 import { LuPlus } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import CustomerTable from "@/components/CustomerTable";
-import CustomerDialog from "@/components/CustomerDialog";
+import CustomerTable from "@/components/customer/CustomerTable";
+import CustomerDialog from "@/components/customer/CustomerDialog";
 const Customer = () => {
   return (
     <div className={`flex-1 flex flex-col gap-7 py-4 pr-7 w-full`}>

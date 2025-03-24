@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "../ui/dialog";
 import PropTypes from "prop-types";
 import {
   Select,
@@ -13,10 +13,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "../ui/select";
 import { IoIosCamera } from "react-icons/io";
 import { useCallback, useState } from "react";
-import Loader from "./Loader";
+import Loader from "../Loader";
 import axios from "axios";
 import { showToast } from "@/utils/contants";
 import { useDropzone } from "react-dropzone";

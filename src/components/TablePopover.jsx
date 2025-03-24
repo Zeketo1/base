@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { CiEdit } from "react-icons/ci";
 import { MdCancel, MdDelete } from "react-icons/md";
 import TableAlertDialog from "./TableAlertDialog";
-import CustomerSheet from "./CustomerSheet";
+import CustomerSheet from "./customer/CustomerSheet";
 import { FaRegEye } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdPhone } from "react-icons/md";
-import { CustomerBarChart } from "./CustomerBarChart";
+import { CustomerBarChart } from "./customer/CustomerBarChart";
 import { RadialChartText } from "./RadialChartText";
 import { IoIosCamera } from "react-icons/io";
 import {

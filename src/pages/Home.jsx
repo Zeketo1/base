@@ -2,7 +2,7 @@ import { LineChartDot } from "@/components/LineChartDot";
 import { homeCategory, topSelling } from "../utils/contants";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { PieChartDonut } from "@/components/PieChartDonut";
-import DashboardTable from "@/components/DashboardTable";
+import DashboardTable from "@/components/home/DashboardTable";
 import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -16,7 +16,7 @@ const Home = () => {
       .then((response) => setData(response.data))
       .catch((error) => console.error(error));
     setActive(false);
-  }, []);
+  }, [setActive]);
 
   console.log(data);
 
