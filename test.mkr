@@ -1,0 +1,53 @@
+GET / 200
+Hello World!
+
+# Login Endpoint
+POST /login 200
+Content-Type: application/json
+{
+    "message": "Login successful",
+    "token": "abc123"
+}
+
+# Get Users Endpoint
+GET /users 200
+Content-Type: application/json
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+    }
+]
+
+# Get Transactions Endpoint
+GET /transactions 200
+    Content-Type: application/json
+[
+    {
+        "id": 101,
+        "amount": 250.75,
+        "date": "2025-01-20",
+        "userId": 1
+    },
+    {
+        "id": 102,
+        "amount": 125.00,
+        "date": "2025-01-22",
+        "userId": 2
+    }
+]
+
+# Get User by ID Endpoint
+GET /users/:id 200
+    Content-Type: application/json
+{
+    "id": $param.id,
+    "name": "User " + $param.id,
+    "email": "user" + $param.id + "@example.com"
+}

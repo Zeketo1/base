@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".", // Sets the base URL for module resolution
+    "paths": {
+      "@/*": ["src/*"] // Maps "@/some-module" to "src/some-module"
+    },
+    "target": "ES6", // Target ECMAScript version
+    "module": "ESNext", // Use the ES module system
+    "allowJs": true, // Allow JavaScript files
+    "checkJs": false, // Disable type-checking for JS
+    "jsx": "react-jsx", // Use the modern JSX runtime
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Enable interoperability for CommonJS and ES modules
+    "skipLibCheck": true // Skip checking type definitions in node_modules
+  },
+  "include": ["src"], // Include all files in the "src" directory
+  "exclude": ["node_modules", "dist"] // Exclude these directories
+}
